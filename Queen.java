@@ -1,4 +1,3 @@
-//Queen_1.java
 public class Queen {
 
     static int size = 8;
