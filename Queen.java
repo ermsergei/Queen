@@ -7,26 +7,41 @@ public class Queen {
         if (table.Solve(0) == 0) {
             table.Display("Solved:");
         } else {
-            System.out.println("Sorry, no solution");
+            System.out.println("Sorry, no solution\n");
         }
     }
+    /*
+    private static class Cell {
 
+    int size = Queen.size;
+    int positions[];
+
+    Cell() {
+
+    positions = new int[size];
+    for (int ii = 0; ii < size; ii++) {
+    positions[ii] = ii + 1;
+    }
+    }
+    }
+     */
 
     private static class Table {
 
         int size = Queen.size;
+        int[][] cells = new int[size][size];
+        int[] positions = new int[size];
+
         // If cell is 0 - it means it's not under attack and a queen can be
         // placed there.  If it's not zero, then it has number of the queen
         // which attacks it
-        int cells[][];
         // Here we keep positions of every queen in the table.
-        int positions[];
-
         Table() {
+            int line, column;
             // At the beginning, all the cells are empty and we can put
             // figures everywhere
-            for (int line = 0; line < size; line++) {
-                for (int column = 0; column < size; column++) {
+            for (line = 0; line < size; line++) {
+                for (column = 0; column < size; column++) {
                     cells[line][column] = 0;
                 }
             }
@@ -53,6 +68,7 @@ public class Queen {
             return 1;
         }
 
+//**************************************************
         void SetQueen(int line_, int column_) {
             positions[line_] = column_;
 
@@ -103,6 +119,7 @@ public class Queen {
                 right++;
             }
         }
+//*************************************************
 
         void UnsetQueen(int line, int column) {
             positions[line] = -1;
@@ -114,6 +131,7 @@ public class Queen {
                 }
             }
         }
+//*************************************************
 
         void Display(String msg) {
             System.out.println(" " + msg);
@@ -121,15 +139,15 @@ public class Queen {
             for (int line = 0; line < size; line++) {
                 for (int column = 0; column < size; column++) {
                     if (column != positions[line]) {
-                        // printf("| %1d  ", cells[line][column]);
-                        System.out.println("|    " + cells[line][column]);
+                        System.out.print("|  " + cells[line][column]);
                     } else {
-                        System.out.println("| Q  ");
+                        System.out.print("|  Q");
                     }
                 }
-                System.out.println("|-----------------------------------------");
+                System.out.println();
+                System.out.println("|--------------------------------|");
             }
-            System.out.println(" ");
+            System.out.println("  ");
         }
     }
 }
